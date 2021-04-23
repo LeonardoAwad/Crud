@@ -1,0 +1,95 @@
+
+<div class="container">
+
+  <section class="row justify-content-center" [hidden]="!(alterar == false)">
+    <div class="col-12 col-md-10 col-lg-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Preço</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of arrayProduto">
+            <th scope="row">{{produto.id}}</th>
+            <td>{{produto.nome}}</td>
+            <td>R$ {{produto.preco}}</td>
+            <td><button (click)="Alterar(produto)" class="btn btn-warning w-100">Alterar</button></td>
+            <td><button (click)="ExcluirProduto(produto)" class="btn btn-danger w-100">Excluir</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="row" [hidden]="!(alterar == false)">
+    <div class="col-12">
+      <h2 class="text-center">Novo Produto</h2>
+
+      <div class="row justify-content-center">
+        <div class="col-4 col-md-3">
+          <h6>Nome</h6>
+          <input class="w-100" type="text" placeholder="ex: Sucrilhos" [(ngModel)]="novoProduto.nome" [ngModelOptions]="{standalone: true}"/>
+        </div>
+
+        <div class="col-4 col-md-3">
+          <h6>Preço</h6>
+          <input class="w-100" type="number" placeholder="ex: 70" [(ngModel)]="novoProduto.preco" [ngModelOptions]="{standalone: true}"/>
+        </div>
+
+        <div class="col-4 col-md-3 align-self-end">
+          <button (click)="InserirProduto()" class="btn btn-success w-100">Adicionar</button>
+        </div>
+      </div>
+      
+      
+
+    </div>
+  </section>
+
+  <section class="row" [hidden]="!(alterar == true)">
+    <div class="col-12">
+      <h2 class="text-center">Alterar Produto</h2>
+
+      <div class="row justify-content-center" *ngIf="produto != null">
+        <div class="col-4 col-md-3">
+          <h6>Id:</h6>
+          <span>{{produto.id}}</span>
+        </div>
+
+        <div class="col-4 col-md-3">
+          <h6>Nome</h6>
+          <input class="w-100" type="text" placeholder="ex: Nescau ball" [(ngModel)]="produto.nome" [ngModelOptions]="{standalone: true}" />
+        </div>
+
+        <div class="col-4 col-md-3">
+          <h6>Preço</h6>
+          <input class="w-100" type="number" placeholder="ex: 70" [(ngModel)]="produto.preco" [ngModelOptions]="{standalone: true}" />
+        </div>
+
+
+      </div>
+      <div class="row justify-content-center pt-4">
+        <div class="col-4 col-md-3 align-self-end">
+          <div class="p-1">
+            <button (click)="Voltar()" class="btn btn-danger w-100">Voltar</button>
+          </div>
+          <div class="p-1">
+            <button (click)="AlterarProduto(produto)" class="btn btn-success w-100">Salvar</button>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+</div>
+
